@@ -6,7 +6,7 @@
 /*   By: keomalima <keomalima@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:01:45 by keomalima         #+#    #+#             */
-/*   Updated: 2024/11/29 09:34:09 by keomalima        ###   ########.fr       */
+/*   Updated: 2024/11/29 10:10:31 by keomalima        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static char	*get_line(int fd, char *buf, char *line)
 			return (NULL);
 		if (buf[i] == '\n')
 			return (ft_mmove(buf, buf + i + 1, ft_len(buf + i + 1) + 1), line);
-		ft_bzero(buf, BUFFER_SIZE + 1);
+		ft_bzero(buf, BUFFER_SIZE);
 	}
 }
 
