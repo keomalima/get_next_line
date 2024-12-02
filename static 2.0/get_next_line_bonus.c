@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: keomalima <keomalima@student.42.fr>        +#+  +:+       +#+        */
+/*   By: kricci-d <kricci-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 08:15:44 by keomalima         #+#    #+#             */
-/*   Updated: 2024/11/29 09:31:02 by keomalima        ###   ########.fr       */
+/*   Updated: 2024/12/02 09:11:16 by kricci-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
+
+static char	*clear_buff(char *buf, char *line, size_t i)
+{
+	ft_mmove(buf, buf + i + 1, ft_len(buf + i + 1) + 1);
+	return (line);
+}
 
 static char	*get_line(int fd, char *buf, char *line)
 {
@@ -25,7 +31,7 @@ static char	*get_line(int fd, char *buf, char *line)
 			if (bytes_read == 0)
 				return (line);
 			if (bytes_read < 0)
-				return (free(line), NULL);
+				return (clear_line(line));
 			buf[bytes_read] = '\0';
 		}
 		i = 0;
@@ -35,7 +41,7 @@ static char	*get_line(int fd, char *buf, char *line)
 		if (!line)
 			return (NULL);
 		if (buf[i] == '\n')
-			return (ft_mmove(buf, buf + i + 1, ft_len(buf + i + 1) + 1), line);
+			return (clear_buff(buf, line, i));
 		ft_bzero(buf, BUFFER_SIZE);
 	}
 }

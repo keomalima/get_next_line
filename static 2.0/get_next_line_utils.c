@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: keomalima <keomalima@student.42.fr>        +#+  +:+       +#+        */
+/*   By: kricci-d <kricci-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:16:44 by keomalima         #+#    #+#             */
-/*   Updated: 2024/11/29 08:08:06 by keomalima        ###   ########.fr       */
+/*   Updated: 2024/12/02 09:11:56 by kricci-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+char	*clear_line(char *line)
+{
+	if (line)
+	{
+		free(line);
+		line = NULL;
+	}
+	return (NULL);
+}
 
 char	*ft_strnjoin(char *line, char *buffer, size_t size)
 {
@@ -26,10 +36,10 @@ char	*ft_strnjoin(char *line, char *buffer, size_t size)
 		line[0] = '\0';
 	}
 	if (!buffer)
-		return (free(line), NULL);
+		return (clear_line(line));
 	join = malloc(sizeof(char) * (ft_len(line) + size) + 1);
 	if (!join)
-		return (free(line), NULL);
+		return (clear_line(line));
 	i = -1;
 	while (line[++i])
 		join[i] = line[i];
